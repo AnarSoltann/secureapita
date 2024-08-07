@@ -9,13 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import static java.util.Map.of;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 import static com.ansdev.secureapita.enumeration.RoleType.ROLE_USER;
+import static com.ansdev.secureapita.query.RoleQuery.INSERT_ROLE_TO_USER_QUERY;
+import static com.ansdev.secureapita.query.RoleQuery.SELECT_ROLE_BY_NAME_QUERY;
+import static java.util.Map.of;
 import static java.util.Objects.requireNonNull;
 
 @Repository
@@ -23,8 +24,6 @@ import static java.util.Objects.requireNonNull;
 @Slf4j
 public class RoleRepositoryImpl implements RoleRepository<Role> {
 
-    private static final String INSERT_ROLE_TO_USER_QUERY ="" ;
-    private static final String SELECT_ROLE_BY_NAME_QUERY ="" ;
     private final NamedParameterJdbcTemplate jdbc;
 
     @Override

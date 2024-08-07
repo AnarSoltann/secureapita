@@ -7,7 +7,6 @@ import com.ansdev.secureapita.repository.RoleRepository;
 import com.ansdev.secureapita.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -49,7 +48,7 @@ public class UserRepositoryImpl implements UserRepository<User> {
             roleRepository.addRoleToUser(user.getId(), ROLE_USER.name());
             String verificationUrl = getVerificationUrl(UUID.randomUUID().toString(), ACCOUNT.getType());
             jdbc.update(INSERT_ACCOUNT_VERIFICATION_URL_QUERY, of("userId", user.getId(), "url", verificationUrl));
-        //    emailService.sendVerifcationUrl(user.getFirstName(), user.getEmail(), verificationUrl, ACCOUNT);
+            //    emailService.sendVerifcationUrl(user.getFirstName(), user.getEmail(), verificationUrl, ACCOUNT);
             user.setEnabled(false);
             user.setNotLocked(true);
             return user;
@@ -99,3 +98,5 @@ public class UserRepositoryImpl implements UserRepository<User> {
 
 
     }
+
+}
